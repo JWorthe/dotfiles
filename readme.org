@@ -1,0 +1,99 @@
+#+TITLE: System Configuration
+
+* Applications
+
+I'm terrible at keeping track of the actual programs I need for my
+setup, but here's a stab at it.
+
+#+TBLNAME: programs
+| getmail      |
+| procmail     |
+| emacs        |
+| git          |
+| clamav       |
+| evolution    |
+| rsync        |
+| xorg         |
+| xorg-xinit   |
+| nvidia       |
+| nvidia-utils |
+| gnome        |
+| evolution    |
+| firefox      |
+| lftp         |
+| pwgen        |
+| wmctrl       |
+| graphviz     |
+| node         |
+| rustup       |
+| inkscape     |
+| gimp         |
+
+#+BEGIN_SRC sh :var programs=programs
+  pacman -S $programs
+#+END_SRC
+
+#+RESULTS:
+
+* Versioning of Config
+
+Config can be installed using Gnu Stow. Clone this repo into a home
+directory.
+
+Each directory is a Stow repo. The contents can be installed with, for
+example
+
+#+BEGIN_SRC sh
+  stow emacs
+#+END_SRC
+
+This will symlink the contents of the emacs folder into the parent
+directory of the repo (this should be the home directory).
+
+#+BEGIN_SRC sh
+  cd ~/dotfiles
+  stow emacs
+  stow auto
+  stow bash
+  stow i3
+  stow x
+#+END_SRC
+
+* Starting systemd services
+
+There are various Systemd unit files in ~/auto, for tasks from
+fetching emails to syncing git repositories. They can be installed
+with
+
+#+BEGIN_SRC sh
+systemctl --user enable $serviceFile
+systemctl --user start $service
+systemctl --user enable $timerFile
+#+END_SRC
+
+* Email
+
+Email is being downloaded with a combination of getmail and
+procmail. Email server configs are stored in .getmail/. For the backed
+up version, these are encrypted, and will need to be decrypted
+beforehand.
+
+Procmail applies any email rules. It's rules need to be placed in ~/.procmailrc.
+
+auto/getmail.service and auto/getmail.timer trigger this at regular
+intervals.
+
+Antivirus on emails is done by ClamAV. It's virus definitions are kept
+up to date by the system service freshclamd.service.
+
+Emacs uses .authinfo.gpg for its email sending config. It's
+interactive, so it can ask to decrypt the config only when you want to
+send a mail.
+
+Mail can be read by any reader that supports the maildir standard. For
+example, Mutt, Emacs, or GNOME Evolution. Searching can be achieved by
+using these programs' search functions, or since it's just plaintext
+using something like grep.
+
+Backups (scripted in ~/auto) are run regularly using git bundles, and
+stored on Cloudfiles.
