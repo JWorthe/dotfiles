@@ -1,9 +1,18 @@
 #+TITLE: System Configuration
 
+* Intent
+
+This is collection of the config I use on my personal development
+machine. Shared publically in case someone finds some part of it
+useful, and also so it's easier for me to access when I'm setting up a
+new machine for myself.
+
 * Applications
 
 I'm terrible at keeping track of the actual programs I need for my
-setup, but here's a stab at it.
+setup, but here's a stab at some of them. Realistically, this is only
+updated when I'm setting up a fresh machine and realize I've forgotten
+something.
 
 #+TBLNAME: programs
 | getmail      |
