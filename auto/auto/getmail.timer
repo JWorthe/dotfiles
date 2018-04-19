@@ -1,0 +1,9 @@
+[Unit]
+Description=Downloads email
+
+[Timer]
+OnBootSec=60sec
+OnUnitActiveSec=30min
+
+[Install]
+WantedBy=timers.target

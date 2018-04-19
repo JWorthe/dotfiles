@@ -1,0 +1,40 @@
+#!/bin/sh
+
+close_all()
+{
+    for win in $(wmctrl -l | awk '{print $1}'); do
+        wmctrl -i -c $win
+    done
+    # Give it five seconds to close. I might want to respond to
+    # something here.
+    sleep 5
+}
+
+case "$1" in
+    lock)
+        i3lock -c 000000
+        ;;
+    logout)
+        close_all
+        i3-msg exit
+        ;;
+    suspend)
+        i3lock -c 000000 && systemctl suspend
+        ;;
+    hibernate)
+        i3lock -c 000000 && systemctl hibernate
+        ;;
+    reboot)
+        close_all
+        systemctl reboot
+        ;;
+    shutdown)
+        close_all
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0

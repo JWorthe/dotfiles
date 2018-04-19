@@ -1,0 +1,11 @@
+[Unit]
+Description=Backup my maildir to cloudfiles
+OnFailure=failure-email@%n.service
+
+[Service]
+Type=simple
+ExecStart=/home/justin/auto/backup mail /home/justin/mail/ backup-cf/
+Nice=19
+
+[Install]
+WantedBy=backup-email-cloudfiles.target

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+IN=$1
+OUT=`basename -s .ogg $1`
+
+# mp3
+ffmpeg -i $IN -acodec mp3 $OUT.mp3

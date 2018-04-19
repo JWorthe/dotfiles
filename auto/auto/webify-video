@@ -1,0 +1,11 @@
+#!/bin/sh
+
+IN=$1
+OUT=`basename -s .ogv $1`
+
+# webm
+ffmpeg -i $IN -c:v libvpx -pass 1 -an -f rawvideo -y /dev/null  # Generates ffmpeg2pass-0.log
+ffmpeg -i $IN -c:v libvpx -pass 2 -f webm -b:v 400K -crf 10 -an -y $OUT.webm
+
+# mp4
+ffmpeg -i $IN -acodec aac -strict experimental -ac 2 -ab 128k -vcodec libx264 -preset slow -f mp4 -crf 22 $OUT.mp4

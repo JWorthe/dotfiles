@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Usage: emc-to-pdf <source> <destination>
+#
+# Converts .emc statement in argument one to a pdf with
+#
+# Source: The .emc file you want to convert
+# Destination: The pdf file you want to create
+
+
+mkdir /tmp/striata-statement
+striata-readerc -outdir="/tmp/striata-statement/" $1
+cat /tmp/striata-statement/*.html > /tmp/striata-statement/concat.html
+wkhtmltopdf /tmp/striata-statement/concat.html $2
+rm -r /tmp/striata-statement

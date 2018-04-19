@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup email to cloudfiles
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=24h
+
+[Install]
+WantedBy=timers.target

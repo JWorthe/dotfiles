@@ -1,0 +1,9 @@
+[Unit]
+Description=Disconnects and reconnects the ethernet connection
+
+[Timer]
+OnBootSec=23h
+OnUnitActiveSec=23h
+
+[Install]
+WantedBy=timers.target

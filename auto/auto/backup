@@ -1,0 +1,72 @@
+#!/bin/bash
+# Usage: backup prefix src backup-dir
+
+# restore with:
+# mkdir recovery
+# cd recovery
+# gpg --decrypt-files ~/tmp/backups/*.bundle.gpg
+# git init
+# find ~/tmp/backups/ -name '*.bundle' | sort | xargs -n1 -I'{}' git fetch {}
+# git checkout -B master FETCH_HEAD
+#
+
+set -e
+
+SRC_DIR=$2
+BACKUP_DIR=$3
+BACKUP_PREFIX=$1
+
+echo "Starting backup of $BACKUP_PREFIX ($SRC_DIR)"
+
+cd $SRC_DIR
+
+if [ ! -d "$BACKUP_DIR" ]
+then
+    echo "Backup directory does not exist. Creating it"
+    mkdir -p $BACKUP_DIR
+fi
+
+if [ -f ".git/index.lock" ]
+then
+    echo "Git lock exists. Waiting for a few seconds."
+    sleep 3
+fi
+
+git add -A
+if [ "`git diff --cached --name-only`" ]
+then
+	git commit -m "Automated commit from backup util"
+fi
+
+CURRENT_CHECKPOINT=`git rev-parse --verify HEAD`
+BUNDLE_NAME=$BACKUP_PREFIX"."`date +%Y%m%d%H%M%S`"."$CURRENT_CHECKPOINT".bundle"
+BUNDLE=$BACKUP_DIR$BUNDLE_NAME
+
+LAST_BUNDLE=`find $BACKUP_DIR -name '*.bundle' | sort -r | head -n 1`
+if [ "$LAST_BUNDLE" == "" ]
+then
+    echo "first backup bundle"
+    git bundle create "$BUNDLE" HEAD
+else
+    echo "basing backup on previous bundle, $LAST_BUNDLE"
+    LAST_CHECKPOINT=`git bundle list-heads $LAST_BUNDLE | cut -d' ' -f1`
+    echo "last commit was $LAST_CHECKPOINT"
+    if [ "$CURRENT_CHECKPOINT" != "$LAST_CHECKPOINT" ]
+    then
+        git bundle create "$BUNDLE" $LAST_CHECKPOINT..HEAD
+    else
+        echo "nothing new to backup"
+    fi
+fi
+
+
+if [ -f "$BUNDLE" ]
+then
+    echo "Encrypting bundle"
+    gpg -r justin -e "$BUNDLE"
+
+    rsync -avz --remove-source-files --ignore-existing $BACKUP_DIR/*.bundle.gpg justin.worthe-it@worthe-it.cloudfiles.co.za:jw-backups/$BACKUP_PREFIX/
+fi
+
+echo "Finished backup utility..."
+echo `date`

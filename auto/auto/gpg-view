@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+display_usage() {
+    echo "Usage: gpg-view <viewer> <file>"
+}
+
+if [ $# -le 1 ] 
+then 
+    display_usage
+    exit 1
+fi
+
+FileOut=`mktemp`
+gpg --output - --decrypt "$2" > $FileOut
+[ ! $? -eq 0 ] && exit 2
+
+( $1 $FileOut &
+  wait $!
+  rm $FileOut ) &

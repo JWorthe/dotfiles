@@ -1,0 +1,11 @@
+[Unit]
+Description=Automatically does git push and pull on a number of repos
+OnFailure=failure-email@%n.service
+
+[Service]
+Type=simple
+ExecStart=/home/justin/auto/autosync-repos.sh
+Nice=19
+
+[Install]
+WantedBy=autosync-repos.target

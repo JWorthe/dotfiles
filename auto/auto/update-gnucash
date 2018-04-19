@@ -1,0 +1,18 @@
+#!/bin/bash
+
+gnucash > /dev/null 2>&1 &
+firefox www.fnb.co.za > /dev/null 2>&1 &
+
+read -p "Please download all QIF files to the download directory, and press enter to continue"
+
+unzip ~/tmp/download/transaction_history\*.zip -d ~/tmp/qifs/
+rm ~/tmp/download/transaction_history*.zip
+
+mv ~/tmp/download/*.qif ~/tmp/qifs/
+
+qif_parser ~/tmp/qifs/*.qif
+emacs ~/tmp/qifs/*.qif
+
+read -p "Import the files into Gnucash, then press enter to clean up"
+
+rm ~/tmp/qifs/*

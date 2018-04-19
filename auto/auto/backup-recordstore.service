@@ -1,0 +1,11 @@
+[Unit]
+Description=Backup the recordstore to cloudfiles
+OnFailure=failure-email@%n.service
+
+[Service]
+Type=simple
+ExecStart=/home/justin/auto/backup recordstore /home/justin/doc/recordstore/ backup/
+Nice=19
+
+[Install]
+WantedBy=backup-recordstore.target

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+display_usage() {
+    echo "Usage: recordstore-insert <category> <files...>"
+}
+
+if [ $# -le 1 ] 
+then 
+    display_usage
+    exit 1
+fi
+
+RECORDS=~/doc/recordstore
+
+mkdir -p $RECORDS/$1
+
+for filepath in "${@:2}"
+do
+    FILENAME=`basename "$filepath"`
+    RELPATH=$1/$FILENAME.gpg
+    gpg -o "$RECORDS/$RELPATH" -r justin -es "$filepath"
+    
+    echo "** [[./$RELPATH]]" >> $RECORDS/index.org
+    echo "Inserted $filepath"
+done
+

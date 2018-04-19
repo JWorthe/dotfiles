@@ -1,0 +1,12 @@
+[Unit]
+Description=Disconnects and reconnects the ethernet connection
+OnFailure=failure-email@%n.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nmcli device disconnect enp0s25
+ExecStart=/usr/bin/nmcli device connect enp0s25
+Nice=19
+
+[Install]
+WantedBy=restart-network.target

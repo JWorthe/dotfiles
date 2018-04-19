@@ -1,0 +1,11 @@
+[Unit]
+Description=Downloads emails
+OnFailure=failure-email@%n.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/getmail --rcfile getmailrc --rcfile gmailrc
+Nice=19
+
+[Install]
+WantedBy=getmail.target
