@@ -119,6 +119,7 @@
  '(org-icalendar-include-todo t)
  '(org-icalendar-use-deadline (quote (event-if-not-todo event-if-todo todo-due)))
  '(org-icalendar-use-scheduled (quote (event-if-not-todo event-if-todo todo-start)))
+ '(org-log-repeat nil)
  '(org-outline-path-complete-in-steps nil)
  '(org-preview-latex-image-directory "/tmp/ltximg/")
  '(org-refile-targets
