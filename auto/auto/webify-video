@@ -1,11 +1,18 @@
 #!/bin/sh
 
 IN=$1
-OUT=`basename -s .ogv $1`
+OUT=`basename -s .mkv $1`
 
 # webm
 ffmpeg -i $IN -c:v libvpx -pass 1 -an -f rawvideo -y /dev/null  # Generates ffmpeg2pass-0.log
 ffmpeg -i $IN -c:v libvpx -pass 2 -f webm -b:v 400K -crf 10 -an -y $OUT.webm
+rm ffmpeg2pass-0.log
 
 # mp4
 ffmpeg -i $IN -acodec aac -strict experimental -ac 2 -ab 128k -vcodec libx264 -preset slow -f mp4 -crf 22 $OUT.mp4
+
+# gif
+ffmpeg -i $IN -vf "fps=10,palettegen" /tmp/palette.png
+ffmpeg -i $IN -i /tmp/palette.png -lavfi "fps=10 [x]; [x][1:v] paletteuse=dither=none" $OUT.gif
+rm /tmp/palette.png
+
