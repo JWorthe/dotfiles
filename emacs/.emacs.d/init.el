@@ -3,7 +3,7 @@
                          ("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
-(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode ox-reveal org-password-manager markdown-mode magit less-css-mode json-mode js2-mode sml-mode org-contacts org-depend company company-racer artbollocks-mode graphviz-dot-mode htmlize gnuplot))
+(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode ox-reveal ox-gfm org-password-manager markdown-mode magit less-css-mode json-mode js2-mode sml-mode org-contacts org-depend company company-racer artbollocks-mode graphviz-dot-mode htmlize gnuplot))
 
 (setq package-enable-at-startup nil) ; To avoid initializing twice
 (package-initialize)
