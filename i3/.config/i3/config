@@ -29,8 +29,11 @@ font pango:Hack 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# start a terminal, and other common apps
 bindsym $mod+Return exec dbus-launch gnome-terminal
+bindsym $mod+backslash exec firefox
+bindsym $mod+bracketright exec dbus-launch evolution
+bindsym $mod+bracketleft exec emacs
 
 # kill focused window
 bindsym $mod+Shift+q kill
