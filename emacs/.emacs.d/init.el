@@ -37,6 +37,7 @@
      (other . "gnu"))))
  '(company-idle-delay nil)
  '(company-tooltip-align-annotations nil)
+ '(counsel-projectile-mode t nil (counsel-projectile))
  '(custom-enabled-themes (quote (wombat)))
  '(custom-safe-themes
    (quote
@@ -149,6 +150,7 @@
  '(org-todo-keywords (quote ((sequence "TODO" "|" "DONE" "CANCELLED"))))
  '(projectile-completion-system (quote ivy))
  '(projectile-mode t nil (projectile))
+ '(projectile-use-git-grep t)
  '(reb-re-syntax (quote string))
  '(send-mail-function (quote smtpmail-send-it))
  '(smtpmail-default-smtp-server "worthe-it.co.za")
