@@ -213,6 +213,9 @@
                   :test "cargo test"
                   :run "cargo run")
 
+(projectile-register-project-type 'jekyll '("index.html")
+                  :run "jekyll serve --drafts")
+
 (ivy-mode 1)
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
