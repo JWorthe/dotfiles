@@ -3,7 +3,7 @@
                          ("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
-(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer artbollocks-mode graphviz-dot-mode htmlize gnuplot counsel-projectile))
+(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode lsp-mode lsp-rust lsp-flycheck ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer company-lsp artbollocks-mode graphviz-dot-mode htmlize gnuplot counsel-projectile))
 
 (setq package-enable-at-startup nil) ; To avoid initializing twice
 (package-initialize)
@@ -36,6 +36,7 @@
      (awk-mode . "awk")
      (other . "gnu"))))
  '(company-idle-delay nil)
+ '(company-lsp-enable-snippet nil)
  '(company-tooltip-align-annotations nil)
  '(counsel-projectile-mode t nil (counsel-projectile))
  '(custom-enabled-themes (quote (wombat)))
@@ -120,6 +121,23 @@
  '(org-icalendar-include-todo t)
  '(org-icalendar-use-deadline (quote (event-if-not-todo event-if-todo todo-due)))
  '(org-icalendar-use-scheduled (quote (event-if-not-todo event-if-todo todo-start)))
+ '(org-latex-default-packages-alist
+   (quote
+    (("AUTO" "inputenc" t
+      ("pdflatex"))
+     ("T1" "fontenc" t
+      ("pdflatex"))
+     ("" "graphicx" t nil)
+     ("" "grffile" t nil)
+     ("" "longtable" nil nil)
+     ("" "wrapfig" nil nil)
+     ("" "rotating" nil nil)
+     ("normalem" "ulem" t nil)
+     ("" "amsmath" t nil)
+     ("" "textcomp" t nil)
+     ("" "amssymb" t nil)
+     ("" "capt-of" nil nil)
+     ("colorlinks=true" "hyperref" nil nil))))
  '(org-log-repeat nil)
  '(org-outline-path-complete-in-steps nil)
  '(org-preview-latex-image-directory "/tmp/ltximg/")
@@ -169,6 +187,7 @@
  '(company-scrollbar-fg ((t (:background "#303030"))))
  '(company-tooltip ((t (:inherit default :background "#292929"))))
  '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+ '(company-tooltip-common-selection ((t (:inherit highlight))))
  '(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
  '(org-agenda-date-weekend ((t (:inherit org-agenda-structure)))))
 
@@ -188,12 +207,22 @@
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-(add-hook 'rust-mode-hook 'racer-mode)
-(add-hook 'racer-mode-hook 'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
+;(add-hook 'rust-mode-hook 'racer-mode)
+;(add-hook 'racer-mode-hook 'eldoc-mode)
+
 
 (require 'rust-mode)
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+
+(setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+(require 'lsp-mode)
+(require 'lsp-rust)
+(add-hook 'rust-mode-hook #'lsp-rust-enable)
+(add-hook 'rust-mode-hook #'flycheck-mode)
+(add-hook 'rust-mode-hook #'company-mode)
+
+(require 'company-lsp)
+(push 'company-lsp company-backends)
 
 (require 'projectile)
 
