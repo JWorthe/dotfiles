@@ -51,6 +51,7 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(magit-diff-refine-hunk (quote all))
  '(mail-default-headers "BCC: justin@worthe-it.co.za")
  '(markdown-command "pandoc")
  '(menu-bar-mode nil)
