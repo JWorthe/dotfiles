@@ -190,18 +190,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l) lock, (e) logout, (r) reboot, (Pause) shutdown
+set $mode_system System (l) lock, (e) logout, (r) reboot, (Pause/PageUp) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Pause exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym Page_Up exec --no-startup-id i3exit shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+Page_Up mode "$mode_system"
 
 # Open a calendar
 bindsym $mod+c exec gsimplecal

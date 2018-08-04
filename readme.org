@@ -14,6 +14,9 @@ setup, but here's a stab at some of them. Realistically, this is only
 updated when I'm setting up a fresh machine and realize I've forgotten
 something.
 
+Comment out the ones that don't make sense for a given machine. For
+example, the nvidia drivers.
+
 #+TBLNAME: programs
 | getmail      |
 | procmail     |
@@ -37,7 +40,12 @@ something.
 | rustup       |
 | inkscape     |
 | gimp         |
-| i3           |
+| i3-wm        |
+| i3blocks     |
+| i3lock       |
+| i3status     |
+| dmenu        |
+| ttf-hack     |
 
 #+BEGIN_SRC sh :var programs=programs :async
   pacman --noconfirm -S $programs
