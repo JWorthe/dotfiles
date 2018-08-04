@@ -37,9 +37,10 @@ something.
 | rustup       |
 | inkscape     |
 | gimp         |
+| i3           |
 
 #+BEGIN_SRC sh :var programs=programs :async
-  pacman -S $programs
+  pacman --noconfirm -S $programs
 #+END_SRC
 
 #+RESULTS:
