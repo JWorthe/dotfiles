@@ -33,12 +33,12 @@ something.
 | pwgen        |
 | wmctrl       |
 | graphviz     |
-| node         |
+| nodejs       |
 | rustup       |
 | inkscape     |
 | gimp         |
 
-#+BEGIN_SRC sh :var programs=programs
+#+BEGIN_SRC sh :var programs=programs :async
   pacman -S $programs
 #+END_SRC
 
