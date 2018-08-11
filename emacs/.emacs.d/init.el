@@ -3,7 +3,7 @@
                          ("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
-(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode lsp-mode lsp-rust lsp-flycheck ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer company-lsp artbollocks-mode graphviz-dot-mode htmlize gnuplot counsel-projectile ob-async))
+(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode lsp-mode lsp-rust lsp-flycheck ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer company-lsp artbollocks-mode graphviz-dot-mode htmlize gnuplot ob-async counsel-projectile which-key slack))
 
 (setq package-enable-at-startup nil) ; To avoid initializing twice
 (package-initialize)
@@ -38,7 +38,7 @@
  '(company-idle-delay nil)
  '(company-lsp-enable-snippet nil)
  '(company-tooltip-align-annotations nil)
- '(counsel-projectile-mode t nil (counsel-projectile))
+ '(counsel-projectile-mode t)
  '(custom-enabled-themes (quote (wombat)))
  '(custom-safe-themes
    (quote
@@ -227,16 +227,9 @@
 
 (require 'projectile)
 
-(projectile-global-mode)
-(add-to-list 'projectile-globally-ignored-directories "elpa")
-(add-to-list 'projectile-globally-ignored-directories ".cache")
-(add-to-list 'projectile-globally-ignored-directories "node_modules")
-(add-to-list 'projectile-globally-ignored-directories "bower_components")
-(add-to-list 'projectile-globally-ignored-directories "target")
-(add-to-list 'projectile-globally-ignored-directories "www")
-(add-to-list 'projectile-globally-ignored-directories "platforms")
-(add-to-list 'projectile-globally-ignored-directories "tmp")
-(add-to-list 'projectile-globally-ignored-directories "lib")
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (projectile-register-project-type 'cargo '("Cargo.toml")
                   :compile "cargo build"
@@ -291,3 +284,5 @@
 
 (put 'upcase-region 'disabled nil)
 
+(require 'which-key)
+(which-key-mode)
