@@ -215,12 +215,13 @@
 (require 'rust-mode)
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
-(setq lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
+(setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
 (require 'lsp-mode)
 (require 'lsp-rust)
 (add-hook 'rust-mode-hook #'lsp-rust-enable)
 (add-hook 'rust-mode-hook #'flycheck-mode)
 (add-hook 'rust-mode-hook #'company-mode)
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 (require 'company-lsp)
 (push 'company-lsp company-backends)
