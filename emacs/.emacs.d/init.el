@@ -72,8 +72,20 @@
                 (org-agenda-start-on-weekday 7)))
        (tags-todo "-SCHEDULED={.+}-BLOCKED=\"t\"-ROUTINE"
                   ((org-agenda-overriding-header "TODO"))))
-      nil nil))))
+      nil)
+     ("y" "Year"
+      ((agenda ""
+               ((org-agenda-overriding-header "The Year Ahead")
+                (org-agenda-span
+                 (quote year))
+                (org-deadline-warning-days 0)
+                (org-agenda-show-future-repeats nil)
+                (org-agenda-show-all-dates nil)
+                (org-agenda-time-grid nil))))
+      nil
+      ("~/calendar.html")))))
  '(org-agenda-default-appointment-duration 60)
+ '(org-agenda-hide-tags-regexp ".*")
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-start-on-weekday 7)
  '(org-capture-templates
