@@ -38,7 +38,6 @@
  '(company-idle-delay nil)
  '(company-lsp-enable-snippet nil)
  '(company-tooltip-align-annotations nil)
- '(counsel-projectile-mode t)
  '(custom-enabled-themes (quote (wombat)))
  '(custom-safe-themes
    (quote
@@ -248,12 +247,16 @@
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+(counsel-projectile-mode +1)
+
 (projectile-register-project-type 'cargo '("Cargo.toml")
+                  :compilation-dir "./"
                   :compile "cargo build"
                   :test "cargo test"
                   :run "cargo run")
 
 (projectile-register-project-type 'jekyll '("index.html")
+                  :compilation-dir "./"
                   :run "jekyll serve --drafts")
 
 (ivy-mode 1)
