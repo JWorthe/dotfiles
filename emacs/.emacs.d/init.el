@@ -193,6 +193,7 @@
  '(smtpmail-stream-type (quote ssl))
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(tramp-default-method "ssh" nil (tramp))
  '(user-mail-address "justin@worthe-it.co.za"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -289,6 +290,7 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 (require 'ox-reveal)
+(require 'ox-gfm)
 
 (require 'ob-rust "~/.emacs.d/ob-rust.el")
 (require 'ob-shell)
