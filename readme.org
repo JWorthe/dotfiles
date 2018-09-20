@@ -46,6 +46,7 @@ example, the nvidia drivers.
 | i3status     |
 | dmenu        |
 | ttf-hack     |
+| gdb          |
 
 #+BEGIN_SRC sh :var programs=programs :async
   pacman --noconfirm -S $programs
