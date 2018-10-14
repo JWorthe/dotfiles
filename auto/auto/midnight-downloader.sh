@@ -11,5 +11,5 @@ echo "Running for $hours hours"
 
 if [ $hours -gt 0 ]; then
     cd $HOME/tmp/download
-    timeout ${hours}h queue-processor.sh $QUEUE
+    timeout ${hours}h $HOME/auto/queue-processor.sh $QUEUE
 fi
