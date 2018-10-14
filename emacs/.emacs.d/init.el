@@ -43,6 +43,7 @@
    (quote
     ("bb749a38c5cb7d13b60fa7fc40db7eced3d00aa93654d150b9627cabd2d9b361" default)))
  '(display-line-numbers nil)
+ '(gdb-many-windows t)
  '(global-auto-revert-mode t)
  '(gnus-select-method (quote (nnml "")))
  '(graphviz-dot-indent-width 2)
@@ -231,7 +232,7 @@
 (require 'rust-mode)
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
-(setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+(setq lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
 (require 'lsp-mode)
 (require 'lsp-rust)
 (add-hook 'rust-mode-hook #'lsp-rust-enable)
