@@ -1,0 +1,11 @@
+[Unit]
+Description=Runs the various commands in the download queue, but only between midnight and 6am
+OnFailure=failure-email@%n.service
+
+[Service]
+Type=simple
+ExecStart=/home/justin/auto/midnight-downloader.sh
+Nice=19
+
+[Install]
+WantedBy=midnight-downloader.target

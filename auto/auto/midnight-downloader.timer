@@ -1,0 +1,8 @@
+[Unit]
+Description=Runs the various commands in the download queue, but only between midnight and 6am
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+
+[Install]
+WantedBy=timers.target
