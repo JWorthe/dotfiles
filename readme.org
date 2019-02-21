@@ -45,6 +45,7 @@ example, the nvidia drivers.
 | i3lock       |
 | i3status     |
 | dmenu        |
+| compton      |
 | ttf-hack     |
 | gdb          |
 
