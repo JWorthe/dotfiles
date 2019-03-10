@@ -11,7 +11,7 @@ alias t='task'
 PS1='[\w]\$ '
 
 export GEM_HOME=$HOME/.gem
-[[ -d $GEM_HOME/ruby/2.5.0/bin ]] && export PATH=$GEM_HOME/ruby/2.5.0/bin:$GEM_HOME/bin/:$PATH
+[[ -d $GEM_HOME/ruby/2.6.0/bin ]] && export PATH=$GEM_HOME/ruby/2.6.0/bin:$GEM_HOME/bin/:$PATH
 
 export GS_OPTIONS="-sPAPERSIZE=a4"
 export PATH=$HOME/auto:$HOME/.cargo/bin:$PATH
