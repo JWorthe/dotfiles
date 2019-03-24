@@ -219,7 +219,7 @@ bindsym $mod+Page_Up mode "$mode_system"
 # Open a calendar
 bindsym $mod+c exec gsimplecal
 
-bindsym --release $mod+Shift+minus exec "xdotool click --repeat 120000 --delay 1 1"
+bindsym --release $mod+Shift+minus exec "xdotool click --repeat 100000000 --delay 1 1"
 bindsym --whole-window button8 exec "xdotool click --repeat 1000 --delay 1 1"
 bindsym --whole-window $mod+button8 exec "xdotool click --repeat 10000 --delay 1 1"
 bindsym --whole-window $mod+Shift+button8 exec "xdotool click --repeat 1000 --delay 1000 1"
