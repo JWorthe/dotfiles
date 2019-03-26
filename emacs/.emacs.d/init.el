@@ -3,7 +3,7 @@
                          ("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
-(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode lsp-mode lsp-rust lsp-flycheck ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer company-lsp artbollocks-mode graphviz-dot-mode htmlize gnuplot ob-async counsel-projectile which-key slack))
+(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode lsp-mode lsp-rust lsp-flycheck ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer company-lsp artbollocks-mode graphviz-dot-mode htmlize gnuplot ob-async counsel-projectile which-key god-mode))
 
 (setq package-enable-at-startup nil) ; To avoid initializing twice
 (package-initialize)
@@ -309,3 +309,7 @@
 
 (require 'which-key)
 (which-key-mode)
+(which-key-enable-god-mode-support)
+ 
+(require 'god-mode)
+(global-set-key (kbd "<escape>") 'god-local-mode)
