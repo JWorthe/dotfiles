@@ -3,7 +3,7 @@
                          ("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
-(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode lsp-mode lsp-rust lsp-flycheck ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer company-lsp artbollocks-mode graphviz-dot-mode htmlize gnuplot ob-async counsel-projectile which-key god-mode))
+(setq package-selected-packages '(systemd swiper ivy projectile racer restclient org-plus-contrib ensime scala-mode undo-tree emojify flycheck-rust web-beautify sass-mode rust-mode lsp-mode lsp-rust lsp-flycheck ox-reveal ox-gfm org-password-manager markdown-mode magit json-mode js2-mode sml-mode company company-racer company-lsp artbollocks-mode graphviz-dot-mode htmlize gnuplot ob-async counsel-projectile which-key god-mode kotlin-mode))
 
 (setq package-enable-at-startup nil) ; To avoid initializing twice
 (package-initialize)
@@ -16,7 +16,7 @@
 (setq my-org-calendar (concat my-org-base-path "calendar.org"))
 
 (setq org-agenda-files
-      `(,(concat my-org-base-path "calendar.org") ,(concat my-org-base-path "contacts.org") ,(concat my-org-base-path "journal.org") ,(concat my-org-base-path "projects/")))
+      `(,(concat my-org-base-path "calendar.org") ,(concat my-org-base-path "contacts.org") ,(concat my-org-base-path "journal.org") ,(concat my-org-base-path "projects/") (concat my-org-base-path "maintenance/")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -231,6 +231,7 @@
 
 (require 'rust-mode)
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 (setq lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
 (require 'lsp-mode)

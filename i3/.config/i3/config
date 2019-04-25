@@ -220,10 +220,11 @@ bindsym $mod+Page_Up mode "$mode_system"
 bindsym $mod+c exec gsimplecal
 
 bindsym --release $mod+Shift+minus exec "xdotool click --repeat 100000000 --delay 1 1"
+bindsym --release $mod+Shift+plus exec "xdotool key --clearmodifiers --repeat 100000000 --delay 1000 a s d f g"
 bindsym --whole-window button8 exec "xdotool click --repeat 1000 --delay 1 1"
 bindsym --whole-window $mod+button8 exec "xdotool click --repeat 10000 --delay 1 1"
 bindsym --whole-window $mod+Shift+button8 exec "xdotool click --repeat 1000 --delay 1000 1"
-bindsym --whole-window $mod+button9 exec "killall xdotool"
+bindsym --whole-window button9 exec "killall xdotool"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
