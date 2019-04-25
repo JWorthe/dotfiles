@@ -16,7 +16,7 @@
 (setq my-org-calendar (concat my-org-base-path "calendar.org"))
 
 (setq org-agenda-files
-      `(,(concat my-org-base-path "calendar.org") ,(concat my-org-base-path "contacts.org") ,(concat my-org-base-path "journal.org") ,(concat my-org-base-path "projects/") (concat my-org-base-path "maintenance/")))
+      `(,(concat my-org-base-path "calendar.org") ,(concat my-org-base-path "contacts.org") ,(concat my-org-base-path "journal.org") ,(concat my-org-base-path "projects/") ,(concat my-org-base-path "maintenance/")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
