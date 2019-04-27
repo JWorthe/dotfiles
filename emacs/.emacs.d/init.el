@@ -63,14 +63,14 @@
                 (org-agenda-span 1)
                 (org-deadline-warning-days 0))))
       nil)
-     ("u" "Unscheduled TODOs" tags-todo "-SCHEDULED={.+}-BLOCKED=\"t\"-ROUTINE"
+     ("u" "Unscheduled TODOs" tags-todo "-SCHEDULED={.+}-BLOCKED=\"t\"-ROUTINE-FUTURE"
       ((org-agenda-overriding-header "TODO")))
      ("w" "Week review"
       ((agenda ""
                ((org-agenda-overriding-header "This week")
                 (org-agenda-span 8)
                 (org-agenda-start-on-weekday 7)))
-       (tags-todo "-SCHEDULED={.+}-BLOCKED=\"t\"-ROUTINE"
+       (tags-todo "-SCHEDULED={.+}-BLOCKED=\"t\"-ROUTINE-FUTURE"
                   ((org-agenda-overriding-header "TODO"))))
       nil)
      ("y" "Year"
@@ -157,8 +157,9 @@
  '(org-preview-latex-image-directory "/tmp/ltximg/")
  '(org-refile-targets
    (quote
-    ((nil :maxlevel . 3)
-     (org-agenda-files :maxlevel . 3))))
+    ((nil :maxlevel . 5)
+     (org-agenda-files :maxlevel . 5))))
+ '(org-refile-use-outline-path t)
  '(org-src-lang-modes
    (quote
     (("ocaml" . tuareg)
@@ -314,3 +315,10 @@
  
 (require 'god-mode)
 (global-set-key (kbd "<escape>") 'god-local-mode)
+
+
+(defun eval-and-replace (value)
+  "Evaluate the sexp at point and replace it with its value"
+  (interactive (list (eval-last-sexp nil)))
+  (kill-sexp -1)
+  (insert (format "%S" value)))
