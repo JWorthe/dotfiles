@@ -104,7 +104,7 @@
      ("c" "Calendar entry" entry
       (file+headline my-org-calendar "Capture")
       "* %^ 
-  %^T
+  %^t
 %?" :empty-lines-after 1 :kill-buffer t)
      ("w" "Week review" entry
       (file+olp+datetree my-org-journal)
@@ -175,6 +175,7 @@
      ("screen" . shell-script)
      ("shell" . sh)
      ("bash" . sh))))
+ '(org-startup-folded nil)
  '(org-stuck-projects
    (quote
     ("+PROJECT+LEVEL=1/-DONE"
